@@ -1,0 +1,205 @@
+.dossier-viewer-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.viewer-header {
+  height: 50px;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.verify-trigger-btn {
+  background: none;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.verify-trigger-btn:hover {
+  background-color: rgba(var(--accent-rgb), 0.1);
+  box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.2);
+}
+
+.doc-viewer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.doc-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.doc-card-header {
+  height: 40px;
+  background-color: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.doc-card-content {
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.doc-field {
+  padding: 10px 12px;
+  border-radius: 4px;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.2s ease;
+}
+
+.doc-field-label {
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+.doc-field-val {
+  font-size: 13px;
+  font-weight: 500;
+  word-break: break-all;
+  font-family: monospace;
+}
+
+/* Diff Highlighting */
+.field-changed {
+  animation: field-highlight 3s ease-out forwards;
+}
+
+@keyframes field-highlight {
+  0% { background-color: rgba(var(--accent-rgb), 0.15); }
+  70% { background-color: rgba(var(--accent-rgb), 0.08); }
+  100% { background-color: var(--bg-primary); }
+}
+
+.diff-container {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.diff-old {
+  color: #ff8b8b;
+  background-color: rgba(255, 75, 75, 0.15);
+  text-decoration: line-through;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 12px;
+  animation: diff-old-enter 0.4s ease-out;
+}
+
+@keyframes diff-old-enter {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.diff-arrow {
+  color: var(--text-muted);
+  margin: 0 8px;
+  font-size: 11px;
+}
+
+.diff-new {
+  color: #8bffc6;
+  background-color: rgba(0, 230, 118, 0.15);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 600;
+  animation: diff-new-enter 0.4s ease-out 0.3s both;
+}
+
+@keyframes diff-new-enter {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Card Selection Highlights */
+.doc-card.highlighted {
+  animation: card-glow 1.5s ease-out;
+  border-color: var(--accent);
+}
+
+@keyframes card-glow {
+  0% { box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.2); }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+/* Trial Data Table styling */
+.table-wrapper {
+  margin-top: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.trial-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  text-align: left;
+}
+
+.trial-table th {
+  background-color: var(--bg-tertiary);
+  color: var(--text-muted);
+  padding: 8px 12px;
+  font-weight: 600;
+}
+
+.trial-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-main);
+  background-color: var(--bg-secondary);
+}
+
+.trial-table tr:last-child td {
+  border-bottom: none;
+}
+
+.align-right {
+  text-align: right;
+}

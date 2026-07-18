@@ -1,0 +1,8 @@
+fastapi>=0.111.0
+uvicorn[standard]>=0.46.0
+pydantic>=2.7.4
+google-genai>=1.0.0
+google-antigravity
+python-multipart>=0.0.9
+pypdf>=4.0.0
+reportlab>=4.0.0

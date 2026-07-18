@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  gatekeeper:
+    build:
+      context: ./services/gatekeeper
+      dockerfile: Dockerfile
+    container_name: validossier-gatekeeper
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DATABASE_PATH=/app/validossier.db
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    volumes:
+      - ./services/gatekeeper:/app
+      - ../Prototype_docs/data_processing/parsed_outputs:/data:ro
+    networks:
+      - validossier-network
+
+  frontend:
+    build:
+      context: ./services/frontend
+      dockerfile: Dockerfile
+    container_name: validossier-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./services/frontend:/usr/src/app
+    environment:
+      - PORT=3000
+      - VITE_API_URL=${VITE_API_URL}
+    networks:
+      - validossier-network
+    depends_on:
+      - gatekeeper
+
+networks:
+  validossier-network:
+    driver: bridge

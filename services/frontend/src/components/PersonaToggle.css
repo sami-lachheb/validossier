@@ -1,0 +1,74 @@
+.persona-toggle-container {
+  display: flex;
+  position: relative;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 3px;
+}
+
+.persona-pill {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: calc(50% - 3px);
+  height: calc(100% - 6px);
+  background-color: var(--bg-tertiary);
+  border-radius: 20px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.persona-btn {
+  position: relative;
+  z-index: 1;
+  background: none;
+  border: none;
+  padding: 8px 20px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+  min-width: 140px;
+  justify-content: center;
+}
+
+.persona-btn.active { color: var(--text-main); }
+.persona-btn.active:first-of-type { color: var(--success); }
+.persona-btn.active:last-of-type { color: var(--accent); }
+
+.persona-role {
+  font-size: 10px;
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-left: 4px;
+}
+
+.workspace-slide {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.workspace-slide.slide-left {
+  animation: slide-in-left 0.35s ease-out forwards;
+}
+
+.workspace-slide.slide-right {
+  animation: slide-in-right 0.35s ease-out forwards;
+}
+
+@keyframes slide-in-left {
+  from { transform: translateX(-30px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(30px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}

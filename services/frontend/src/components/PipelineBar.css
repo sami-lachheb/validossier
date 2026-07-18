@@ -1,0 +1,122 @@
+.pipeline-bar-wrapper {
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 15px 30px;
+  flex-shrink: 0;
+}
+
+.pipeline-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.pipeline-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  z-index: 2;
+}
+
+.pipeline-node-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+}
+
+.pipeline-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Animations and States */
+@keyframes node-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(var(--accent-rgb), 0); }
+}
+
+.pipeline-node.active .pipeline-node-icon {
+  animation: node-pulse 2s ease-in-out infinite;
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #000;
+}
+
+.pipeline-node.active .pipeline-label {
+  color: var(--accent);
+}
+
+.pipeline-node.completed .pipeline-node-icon {
+  background-color: var(--success);
+  border-color: var(--success);
+  color: #000;
+}
+
+.pipeline-node.completed .pipeline-label {
+  color: var(--success);
+}
+
+.pipeline-node.failed .pipeline-node-icon {
+  background-color: var(--error);
+  border-color: var(--error);
+  color: #fff;
+}
+
+.pipeline-node.failed .pipeline-label {
+  color: var(--error);
+}
+
+/* Connecting Line */
+.pipeline-connector {
+  height: 3px;
+  background-color: var(--border-color);
+  flex-grow: 1;
+  position: relative;
+  overflow: visible;
+  margin: 0 -10px;
+  z-index: 1;
+}
+
+.pipeline-connector.filled::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 100%;
+  background: linear-gradient(90deg, var(--success), var(--accent));
+  animation: line-fill 0.6s ease-out forwards;
+}
+
+@keyframes line-fill {
+  from { transform: scaleX(0); transform-origin: left; }
+  to { transform: scaleX(1); transform-origin: left; }
+}
+
+/* Lock overlay for HITL state */
+.pipeline-connector.locked::before {
+  content: '\f023'; /* fa-lock */
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--warning);
+  font-size: 11px;
+  z-index: 4;
+  background: var(--bg-secondary);
+  padding: 0 4px;
+}

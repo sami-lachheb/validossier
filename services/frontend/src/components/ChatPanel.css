@@ -1,0 +1,115 @@
+.chat-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-secondary);
+}
+
+.chat-empty-state {
+  color: var(--text-muted);
+  font-size: 13px;
+  text-align: center;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+}
+
+.chat-empty-icon {
+  font-size: 36px;
+  color: var(--border-color);
+}
+
+.chat-bubble-header {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* Chat bubble entries */
+.chat-bubble-body {
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+/* Thinking loader indicators */
+.thinking-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-style: italic;
+  padding: 4px 0;
+}
+
+.thinking-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.thinking-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  animation: dot-bounce 1.4s ease-in-out infinite;
+}
+
+.thinking-dots span:nth-child(2) { animation-delay: 0.2s; }
+.thinking-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dot-bounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* Collapsible Thinking steps */
+.thinking-steps {
+  margin-bottom: 8px;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  padding: 6px;
+}
+
+.thinking-toggle {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 11px;
+  font-family: var(--font-sans);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0;
+}
+
+.thinking-steps-list {
+  padding-left: 12px;
+  border-left: 2px solid var(--border-color);
+  margin: 6px 0 2px 6px;
+}
+
+.thinking-step {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 3px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: step-fade 0.3s ease-out;
+}
+
+@keyframes step-fade {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}

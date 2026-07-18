@@ -1,0 +1,153 @@
+.discrepancy-panel {
+  padding: 20px;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
+  flex-shrink: 0;
+}
+
+.discrepancy-panel-header {
+  height: 30px;
+  padding: 0;
+  margin-bottom: 12px;
+  background: none;
+  border: none;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.all-clear-message {
+  color: var(--success);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  background-color: var(--success-bg);
+  border: 1px solid var(--success);
+  border-radius: 4px;
+  animation: check-appear 0.4s ease-out;
+}
+
+.discrepancy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* Card layout */
+.discrepancy-card {
+  display: flex;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+  animation: slide-in-right 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Staggered load settings */
+.discrepancy-card:nth-child(1) { animation-delay: 0ms; }
+.discrepancy-card:nth-child(2) { animation-delay: 200ms; }
+.discrepancy-card:nth-child(3) { animation-delay: 400ms; }
+.discrepancy-card:nth-child(4) { animation-delay: 600ms; }
+
+.disc-severity-stripe {
+  width: 4px;
+  flex-shrink: 0;
+}
+
+.discrepancy-card[data-severity="RTF_RISK"] .disc-severity-stripe {
+  background-color: var(--error);
+}
+
+.discrepancy-card[data-severity="WARNING"] .disc-severity-stripe {
+  background-color: var(--warning);
+}
+
+.disc-body {
+  padding: 12px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.disc-header {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-main);
+}
+
+.disc-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.disc-dot.red {
+  background-color: var(--error);
+  box-shadow: 0 0 6px var(--error);
+}
+
+.disc-dot.green {
+  background-color: var(--success);
+  box-shadow: 0 0 6px var(--success);
+}
+
+.disc-message {
+  font-size: 12px;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+.disc-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: monospace;
+  margin-top: 4px;
+}
+
+.disc-field {
+  font-weight: 600;
+}
+
+/* Resolved/remitted states styling */
+.discrepancy-card.resolved {
+  border-color: var(--success);
+  animation: collapse-out 0.5s ease-in 1.2s forwards;
+}
+
+.discrepancy-card.resolved .disc-message {
+  background-image: linear-gradient(var(--text-muted), var(--text-muted));
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0% 2px;
+  animation: strikethrough-wipe 0.6s ease-out 0.2s forwards;
+  color: var(--text-muted);
+}
+
+@keyframes strikethrough-wipe {
+  from { background-size: 0% 2px; }
+  to { background-size: 100% 2px; }
+}
+
+@keyframes collapse-out {
+  from { max-height: 120px; opacity: 1; margin-bottom: 10px; }
+  to { max-height: 0; opacity: 0; margin-bottom: 0; padding: 0; overflow: hidden; }
+}

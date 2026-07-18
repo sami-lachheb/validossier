@@ -1,0 +1,300 @@
+.right-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-secondary);
+  flex-shrink: 0;
+  border-left: 1px solid var(--border-color);
+}
+
+.tabs-header {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
+  flex-shrink: 0;
+}
+
+.tab-btn {
+  flex-grow: 1;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  padding: 12px 0;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  background-color: rgba(var(--accent-rgb), 0.02);
+}
+
+.tab-content {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+/* File Tree Tab */
+.file-tree-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tree-node {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6px;
+}
+
+.tree-folder-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 6px 0;
+  font-size: 13px;
+  transition: color 0.15s ease;
+}
+
+.tree-folder-row:hover {
+  color: var(--accent);
+}
+
+.folder-icon {
+  color: #ffd200;
+}
+
+.tree-folder-row i.chevron {
+  font-size: 10px;
+  transition: transform 0.2s ease;
+  width: 14px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.tree-folder-row i.chevron.collapsed {
+  transform: rotate(-90deg);
+}
+
+.tree-children {
+  padding-left: 12px;
+  border-left: 1px solid var(--border-color);
+  margin-left: 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tree-file-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.tree-file-row:hover {
+  color: var(--text-main);
+  background: rgba(var(--accent-rgb), 0.04);
+}
+
+.tree-file-row.selected {
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.08);
+  font-weight: 500;
+}
+
+.tree-file-row::before {
+  content: '├── ';
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--border-color);
+}
+
+.tree-children .tree-file-row:last-child::before {
+  content: '└── ';
+}
+
+.file-icon {
+  font-size: 12px;
+}
+.file-icon.fa-file-pdf {
+  color: var(--error);
+}
+.file-icon.fa-file-code {
+  color: var(--success);
+}
+.file-icon.fa-file-lines {
+  color: var(--accent);
+}
+
+/* Action Shortcuts list */
+.action-shortcuts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.action-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-sans);
+  transition: all 0.2s ease;
+}
+
+.action-card:hover:not(.disabled) {
+  border-color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.03);
+  transform: translateX(2px);
+}
+
+.action-card.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.action-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.action-card-content {
+  flex-grow: 1;
+}
+
+.action-card-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 2px;
+}
+
+.action-card-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+
+.action-card-arrow {
+  color: var(--text-muted);
+  font-size: 10px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* Metadata Tab */
+.metadata-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.metadata-file-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.doc-header-icon {
+  font-size: 20px;
+  color: var(--accent);
+}
+
+.metadata-file-title {
+  font-weight: 600;
+  font-size: 13px;
+  word-break: break-all;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 13px;
+}
+
+.meta-label {
+  color: var(--text-muted);
+}
+
+.meta-val {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.hash-row {
+  border-bottom: none;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hash-row .meta-val {
+  font-family: monospace;
+  font-size: 11px;
+  word-break: break-all;
+  color: var(--text-muted);
+}
+
+/* Sarah Ingestion Checklist Animations */
+.checklist-item-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.checklist-item-card.completed {
+  border-color: var(--success) !important;
+  background-color: rgba(0, 230, 118, 0.04) !important;
+  box-shadow: 0 0 10px rgba(0, 230, 118, 0.1);
+  animation: checklist-pulse 0.5s ease-out;
+}
+
+.checklist-item-card.completed .checklist-check-icon {
+  background-color: rgba(0, 230, 118, 0.15) !important;
+  color: var(--success) !important;
+  transform: rotate(360deg) scale(1.1);
+}
+
+@keyframes checklist-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
